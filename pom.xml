@@ -44,6 +44,14 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- dbcp连接池 -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- swagger2 localhost:port/swagger-ui.html -->
         <dependency>
             <groupId>io.springfox</groupId>
