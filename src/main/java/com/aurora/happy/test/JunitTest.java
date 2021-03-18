@@ -1,13 +1,11 @@
 package com.aurora.happy.test;
 
-import com.alibaba.fastjson.JSON;
 import com.aurora.happy.annotation.VAfter;
 import com.aurora.happy.annotation.VBefore;
 import com.aurora.happy.annotation.VTest;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -56,12 +54,10 @@ public class JunitTest {
 
         //根据key排序执行
         try {
-            List<Method> collect = methodMap.entrySet().stream()
+            for (Method method : methodMap.entrySet().stream()
                     .sorted(Map.Entry.comparingByKey())
                     .map(Map.Entry::getValue)
-                    .collect(Collectors.toList());
-
-            for (Method method : collect) {
+                    .collect(Collectors.toList())) {
                 method.invoke(clazz.newInstance());
             }
         } catch (Exception e) {
