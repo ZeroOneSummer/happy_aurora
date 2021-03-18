@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 /**
  * Created by pijiang on 2021/3/15.
+ * 双list快速匹配
  */
 public class CoupleTest {
 

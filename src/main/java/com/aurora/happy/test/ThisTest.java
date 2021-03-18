@@ -18,6 +18,10 @@ class Daughter extends Father {
     }
 }
 
+/**
+ * Created by pijiang on 2021/3/15.
+ * 父类this -> 子类this
+ */
 public class ThisTest {
     public static void main(String[] args) {
         /**

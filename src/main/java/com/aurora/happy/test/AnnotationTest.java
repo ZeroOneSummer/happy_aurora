@@ -7,6 +7,10 @@ import org.springframework.core.annotation.AnnotationUtils;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+/**
+ * Created by pijiang on 2021/3/18.
+ * 注解
+ */
 public class AnnotationTest {
 
     public static void main(String[] args) throws Exception{
