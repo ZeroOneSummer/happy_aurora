@@ -59,4 +59,21 @@ public class GenericTest {
         System.out.println(((Human)object).getName());
         System.out.println(((Chinese)object).getName());
 
+        /**
+         * 【无边界 ?】
+         *  指向：List<Object>
+         *  存：X
+         *  取：Object
+         *  转：Everything
+         *  PS：由于可以转任何类型，容易出现 CLASS CAST EXCEIPTION!
+         */
+        List<?> list = chnList;
+        list = humList;
+        list = creList;
+        Object obj = list.get(0);
+        System.out.println(((Creature)obj).getName());
+        System.out.println(((Human)obj).getName());
+        System.out.println(((Chinese)obj).getName());
+//        list = Arrays.asList(1,2,3);
+//        System.out.println((Integer)obj);
     }}
