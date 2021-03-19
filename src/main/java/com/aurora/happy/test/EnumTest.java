@@ -10,7 +10,7 @@ import java.util.Optional;
  */
 public class EnumTest {
     public static void main(String[] args) {
-        Optional<Friut> optioh = EnumUtil.getEnumWithCache(Friut.class, friut -> friut.name(), Friut.APPLE);
-        System.out.println(optioh.get());
+        Optional<Friut> optional = EnumUtil.getEnumWithCache(Friut.class, friut -> friut.name(), Friut.APPLE);
+        System.out.println(optional.get());
     }
 }

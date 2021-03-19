@@ -6,6 +6,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
+/**
+ * 缓存枚举
+ */
 public class EnumUtil {
     private static final Map<Object, Object> key2EnumMap = new ConcurrentHashMap<>();
     private static final Set<Class> enumSet = ConcurrentHashMap.newKeySet();
@@ -13,7 +16,7 @@ public class EnumUtil {
     /**
      * 获取枚举（带缓存）
      */
-    public static <T extends java.lang.Enum<T>, R> Optional<T> getEnumWithCache(Class<T> enumType,
+    public static <T extends Enum<T>, R> Optional<T> getEnumWithCache(Class<T> enumType,
                                            Function<T, R> enumToValueMapper, Object key) {
         if (!enumSet.contains(enumType)) {
             // 不同的枚举类型互相不影响
@@ -39,14 +42,14 @@ public class EnumUtil {
      * 获取key
      * 注：带上枚举类名作为前缀，避免不同枚举的Key重复
      */
-    public static <T extends java.lang.Enum<T>, R> String getKey(Class<T> enumType, R key) {
+    public static <T extends Enum<T>, R> String getKey(Class<T> enumType, R key) {
         return enumType.getName().concat(key.toString());
     }
 
     /**
      * 获取枚举（不缓存）
      */
-    public static <T extends java.lang.Enum<T>, R> Optional<T> getEnum(Class<T> enumType,
+    public static <T extends Enum<T>, R> Optional<T> getEnum(Class<T> enumType,
                                   Function<T, R> enumToValueMapper, Object key) {
         for (T enumThis : enumType.getEnumConstants()) {
             if (enumToValueMapper.apply(enumThis).equals(key)) {
