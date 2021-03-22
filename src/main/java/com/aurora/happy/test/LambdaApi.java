@@ -5,11 +5,11 @@ import com.aurora.happy.pojo.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
  * Created by pijiang on 2021/3/22.
+ * 手写Lambda
  */
 public class LambdaApi {
 
