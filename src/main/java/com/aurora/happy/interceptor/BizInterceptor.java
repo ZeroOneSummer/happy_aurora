@@ -12,6 +12,8 @@ public class BizInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 随便写的逻辑，总之就是拦截
-        return request.getHeader("Authorization") != null;
+        boolean isAuth = request.getHeader("Authorization") == null;
+        System.out.println("权限验证："+isAuth);
+        return isAuth;
     }
 }
