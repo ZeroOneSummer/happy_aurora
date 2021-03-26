@@ -6,6 +6,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * MvcConfig里注入
+ */
 @Component
 public class BizInterceptor implements HandlerInterceptor {
 

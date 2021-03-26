@@ -1,6 +1,7 @@
 package com.aurora.happy.config;
 
 import com.aurora.happy.interceptor.BizInterceptor;
+import com.aurora.happy.interceptor.UserInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,5 +14,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new BizInterceptor()).addPathPatterns("/**")
                 // 多加一个路径排除
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/doc.html/**");
+        registry.addInterceptor(new UserInterceptor()).addPathPatterns("/**");
     }
 }
