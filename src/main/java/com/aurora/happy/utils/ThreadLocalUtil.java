@@ -8,28 +8,47 @@ import java.util.Map;
  * ThreadLocal工具类，存储全局变量
  */
 public class ThreadLocalUtil {
-    private static final ThreadLocal<Map<String, Object>> THREAD_CONTEXT = new ThreadLocal<>();
+    private static final ThreadLocal<Map<String, Object>> THREAD_CONTEXT = new initThreadLocal();
 
     public static void put(String key, Object value){
-        Map<String, Object> map = THREAD_CONTEXT.get();
-        if (map == null) {
-            map = new HashMap<>();
-            THREAD_CONTEXT.set(map);
-        }
-        map.put(key, value);
+        getThreadLocal().put(key, value);
     }
 
     public static Object get(String key){
-        Map<String, Object> map = THREAD_CONTEXT.get();
-        return map == null ? null : map.get(key);
+        return getThreadLocal().get(key);
     }
 
     public static void remove(String key){
-        Map<String, Object> map = THREAD_CONTEXT.get();
-        if(map != null) map.remove(key);
+        getThreadLocal().remove(key);
     }
 
     public static void clear(){
         THREAD_CONTEXT.remove();
+    }
+
+    /**
+     * 获取ThreadLocal
+     * @return
+     */
+    private static Map<String, Object> getThreadLocal(){
+        return THREAD_CONTEXT.get();
+    }
+
+    /**
+     *  THREAD_CONTEXT.get()会调用ThreadLocal.initialValue()
+     * 初始化ThreadLocalMap，减少非null判断
+     */
+    private static class initThreadLocal extends ThreadLocal<Map<String, Object>> {
+        @Override
+        protected Map<String, Object> initialValue() {
+            //初始化map
+            return new HashMap<String, Object>(8){
+                private static final long serialVersionUID = 3637958959138295593L;
+                @Override
+                public Object put(String key, Object value) {
+                    return super.put(key, value);
+                }
+            };
+        }
     }
 }

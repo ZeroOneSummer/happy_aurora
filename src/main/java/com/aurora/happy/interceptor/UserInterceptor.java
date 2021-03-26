@@ -27,7 +27,9 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         System.out.println("UserInterceptor-afterCompletion");
         User user = (User) ThreadLocalUtil.get("system");
         System.out.println("-> ThreadLocal获取用户信息：" + JSON.toJSONString(user));
+
         ThreadLocalUtil.remove((String) ThreadLocalUtil.get("another"));
+        ThreadLocalUtil.clear();
         super.afterCompletion(request, response, handler, ex);
     }
 
