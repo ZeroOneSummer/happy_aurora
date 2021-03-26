@@ -16,6 +16,6 @@ public class WebApp implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        System.out.println("Application is ok xxx...");
+        System.out.println("Application is ok");
     }
 }
