@@ -8,7 +8,7 @@ import java.util.Map;
  * ThreadLocal工具类，存储全局变量
  */
 public class ThreadLocalUtil {
-    private static final ThreadLocal<Map<String, Object>> THREAD_CONTEXT = new initThreadLocal();
+    private static final ThreadLocal<Map<String, Object>> THREAD_CONTEXT = ThreadLocal.withInitial(() -> new HashMap<>(8));
 
     public static void put(String key, Object value){
         getThreadLocal().put(key, value);
@@ -32,23 +32,5 @@ public class ThreadLocalUtil {
      */
     private static Map<String, Object> getThreadLocal(){
         return THREAD_CONTEXT.get();
-    }
-
-    /**
-     *  THREAD_CONTEXT.get()会调用ThreadLocal.initialValue()
-     * 初始化ThreadLocalMap，减少非null判断
-     */
-    private static class initThreadLocal extends ThreadLocal<Map<String, Object>> {
-        @Override
-        protected Map<String, Object> initialValue() {
-            //初始化map
-            return new HashMap<String, Object>(8){
-                private static final long serialVersionUID = 3637958959138295593L;
-                @Override
-                public Object put(String key, Object value) {
-                    return super.put(key, value);
-                }
-            };
-        }
     }
 }
