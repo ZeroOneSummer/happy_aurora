@@ -73,7 +73,7 @@ public class CreateThreadTest {
     }
 
     /**
-     * 5.Runnable接口 + 内部写法
+     * 5.FutureTask异步任务
      */
     static void createMethod_5() throws Exception{
         Callable<String> callable = () -> {
