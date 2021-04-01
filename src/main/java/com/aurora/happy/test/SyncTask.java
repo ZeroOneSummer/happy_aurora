@@ -193,6 +193,66 @@ public class SyncTask {
         }
     }
 
+    /**
+     * 7.CompletableFuture.supplyAsync(Supplier)，返回值异步
+     * 执行顺序：子thread1 -> 子thread2 -> 子thread3 -> 子thread4 -> main
+     * 打印结果：
+     *      task 1
+     *      task2: 5
+     *      task3: task2 is ok
+     *      task4 is over
+     *      null
+     *      main thread
+     */
+    static void doTask_7(){
+
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+        //task1
+        Future<String> T1 = executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("Runnable task start...");
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "Runnable task result");
+
+        //task2
+        Future<String> T2 = executorService.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                System.out.println("Callable task start...");
+                TimeUnit.SECONDS.sleep(2);
+                return "Callable task result";
+            }
+        });
+
+        //轮询
+        boolean isOverRunnable = false;
+        boolean isOverCallable = false;
+        do {
+            if (T1.isDone()) {
+                try {
+                    System.out.println("poll Runnable rs: " + T1.get());
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+                isOverRunnable = true;
+            }
+            if (T2.isDone()) {
+                try {
+                    System.out.println("poll Callable rs: " + T2.get());
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+                isOverCallable = true;
+            }
+        } while (!isOverRunnable || !isOverCallable);
+    }
 
     public static void main(String[] args) {
 //        SyncTask.doTask_1();
@@ -200,7 +260,8 @@ public class SyncTask {
 //        SyncTask.doTask_3();
 //        SyncTask.doTask_4();
 //        SyncTask.doTask_5();
-        SyncTask.doTask_6();
-        System.out.println("main thread");
+//        SyncTask.doTask_6();
+        SyncTask.doTask_7();
+        System.out.println("main: task is over.");
     }
 }
