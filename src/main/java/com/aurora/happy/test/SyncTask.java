@@ -194,18 +194,20 @@ public class SyncTask {
     }
 
     /**
-     * 7.CompletableFuture.supplyAsync(Supplier)，返回值异步
-     * 执行顺序：子thread1 -> 子thread2 -> 子thread3 -> 子thread4 -> main
+     * 7.ExecutorService.submit(Runnable/Callable)，返回值异步
+     * 执行顺序：T1 -> T2 -> main
      * 打印结果：
-     *      task 1
-     *      task2: 5
-     *      task3: task2 is ok
-     *      task4 is over
-     *      null
-     *      main thread
+     *      Runnable task start...
+     *      Callable task start...
+     *      poll Runnable rs: Runnable task result
+     *      poll Runnable rs: Runnable task result
+     *      poll Runnable rs: Runnable task result
+     *      poll Runnable rs: Runnable task result
+     *      poll Runnable rs: Runnable task result
+     *      poll Callable rs: Callable task result
+     *      main: task is over.
      */
     static void doTask_7(){
-
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         //task1
