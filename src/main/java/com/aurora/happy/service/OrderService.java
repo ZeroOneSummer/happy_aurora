@@ -17,8 +17,8 @@ public class OrderService {
     @Autowired
     private ApplicationContext applicationContext;
 
-    public void order(){
-        log.info("新申请单...发布事件");
+    public void order(String name){
+        log.info("【发布事件】新申请单: {}", name);
         applicationContext.publishEvent(new OrderEvent(this));
     }
 }

@@ -15,6 +15,6 @@ public class CarService {
 
     @EventListener(OrderEvent.class)
     public void goCars() {
-        log.info("物流系统，安排配送...");
+        log.info("【异步监听】物流系统，安排配送...");
     }
 }

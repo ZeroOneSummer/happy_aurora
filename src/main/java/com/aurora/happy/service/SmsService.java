@@ -15,6 +15,6 @@ public class SmsService implements ApplicationListener<OrderEvent> {
 
     @Override
     public void onApplicationEvent(OrderEvent orderEvent) {
-        log.info("生成订单，发送成功消息...");
+        log.info("【异步监听】生成订单，发送成功消息...");
     }
 }

@@ -16,7 +16,7 @@ class WebAppTest {
 
     @Test
     void testOrder() {
-        orderService.order();
+        orderService.order("李宁");
     }
 
 }
