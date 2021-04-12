@@ -21,7 +21,7 @@ public class SchedulingConfig implements SchedulingConfigurer {
         //task线程
         ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
         taskScheduler.setPoolSize(3); //可改为配置
-        taskScheduler.setThreadNamePrefix("Aurora-Task-");
+        taskScheduler.setThreadNamePrefix("SchedulingConfig-Aurora-Task-");
         /**
          *  CallerRunsPolicy：不使用异步线程，直接主线程执行
          *  AbortPolicy：丢弃当前任务，直接抛异常
