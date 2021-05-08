@@ -1,4 +1,4 @@
-package com.aurora.happy.utils;
+package com.tencent.oa.fm.mdm.customer.common.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class FileUtils {
      * 创建文件
      */
     public static File createFile(String path){
-        File file = new File(path);
+        File file = getFile(path);
         if (!file.exists() && file.isFile()){
             if (!file.getParentFile().exists()){
                 file.getParentFile().mkdirs();
@@ -30,22 +30,18 @@ public class FileUtils {
     /**
      * 文件删除
      */
-    public static boolean deleteFile(String fileName) {
-        File file = new File(fileName);
-        if (file.exists() && file.isFile()) {
-            return file.delete();
-        } else {
-            return false;
-        }
+    public static boolean deleteFile(String path) {
+        File file = getFile(path);
+        return (file.exists() && file.isFile()) ? file.delete() : false;
     }
 
     /**
      * 指定文件或文件夹删除
      */
-    public static boolean deleteAnyone(String fileName) {
-        File file = new File(fileName);
+    public static boolean deleteAnyone(String path) {
+        File file = getFile(path);
         if (!file.exists()) return false;
-        return file.isFile() ? deleteFile(fileName) : deleteDir(fileName);
+        return file.isFile() ? deleteFile(path) : deleteDir(path);
     }
 
     /**
@@ -63,5 +59,9 @@ public class FileUtils {
         }
         //删除空目录
         return dir.delete();
+    }
+
+    private static File getFile(String path) {
+        return new File(path);
     }
 }
