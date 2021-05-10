@@ -14,7 +14,7 @@ public class FileUtils {
      */
     public static File createFile(String path){
         File file = getFile(path);
-        if (!file.exists() && file.isFile()){
+        if (!file.exists()){
             if (!file.getParentFile().exists()){
                 file.getParentFile().mkdirs();
             }
