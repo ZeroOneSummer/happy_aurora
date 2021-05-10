@@ -1,4 +1,4 @@
-package com.tencent.oa.fm.mdm.customer.common.utils;
+package com.aurora.happy.utils;
 
 import java.io.File;
 import java.io.IOException;
