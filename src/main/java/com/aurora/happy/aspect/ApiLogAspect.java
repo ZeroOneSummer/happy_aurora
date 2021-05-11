@@ -31,11 +31,18 @@ public class ApiLogAspect {
     @Autowired
     private ObjectMapper objectMapper;
 
+    //方法切点：颗粒度大，统一处理
     @Pointcut("execution(* com.aurora.happy.controller.*.*(..))")
     public void controllerPointcut() {
     }
 
-    @Before("controllerPointcut()")
+    //注解切点：颗粒度小，单独处理。类或方法上有@ApiLog && 无@IgnoreApiLog
+    @Pointcut("!@annotation(com.aurora.happy.annotation.IgnoreApiLog) " +
+            "&& (@within(com.aurora.happy.annotation.ApiLog) || @annotation(com.aurora.happy.annotation.ApiLog))")
+    public void controllerPointcut2() {
+    }
+
+    @Before("controllerPointcut2()")
     public void doBefore(JoinPoint joinPoint) throws JsonProcessingException {
 
         // 通过Spring提供的请求上下文工具，获取request
@@ -73,7 +80,7 @@ public class ApiLogAspect {
         log.info("请求参数: {}", getParamJSon(request, joinPoint));
     }
 
-    @Around("controllerPointcut()")
+    @Around("controllerPointcut2()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
@@ -83,7 +90,6 @@ public class ApiLogAspect {
         return result;
     }
 
-    // --------- private methods ----------
 
     private String getParamJSon(HttpServletRequest request, JoinPoint joinPoint) throws JsonProcessingException {
         String requestType = request.getMethod();
@@ -108,7 +114,6 @@ public class ApiLogAspect {
 
         return objectMapper.writeValueAsString(arguments);
     }
-
 
     private String getClientIp(HttpServletRequest request) {
         // 一般都会有代理转发，真实的ip会放在X-Forwarded-For
