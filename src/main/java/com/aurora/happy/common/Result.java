@@ -1,18 +1,20 @@
 package com.aurora.happy.common;
 
-import com.aurora.happy.contanst.ExceptionCodeEnum;
+import com.aurora.happy.enums.ExceptionCodeEnum;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-public class Result implements Serializable {
+@NoArgsConstructor
+public class Result<T> implements Serializable {
 
     private Integer code;
     private String message;
-    private Object data;
+    private T data;
 
-    private Result(Integer code, String message, Object data) {
+    private Result(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -30,8 +32,8 @@ public class Result implements Serializable {
      * @param data
      * @return
      */
-    public static Result success(Object data) {
-        return new Result(ExceptionCodeEnum.SUCCESS.getCode(), ExceptionCodeEnum.SUCCESS.getDesc(), data);
+    public static <T> Result success(T data) {
+        return new Result<>(ExceptionCodeEnum.SUCCESS.getCode(), ExceptionCodeEnum.SUCCESS.getDesc(), data);
     }
 
     /**
@@ -50,7 +52,7 @@ public class Result implements Serializable {
      * @return
      */
     public static Result error(ExceptionCodeEnum exceptionCodeEnum) {
-        return new Result(exceptionCodeEnum.getCode(), exceptionCodeEnum.getDesc());
+        return new Result<>(exceptionCodeEnum.getCode(), exceptionCodeEnum.getDesc());
     }
 
     /**
@@ -61,7 +63,7 @@ public class Result implements Serializable {
      * @return
      */
     public static Result error(ExceptionCodeEnum exceptionCodeEnum, String msg) {
-        return new Result(exceptionCodeEnum.getCode(), msg);
+        return new Result<>(exceptionCodeEnum.getCode(), msg);
     }
 
     /**
@@ -71,7 +73,7 @@ public class Result implements Serializable {
      * @param data
      * @return
      */
-    public static Result error(ExceptionCodeEnum exceptionCodeEnum, Object data) {
-        return new Result(exceptionCodeEnum.getCode(), exceptionCodeEnum.getDesc(), data);
+    public static <T> Result error(ExceptionCodeEnum exceptionCodeEnum, T data) {
+        return new Result<>(exceptionCodeEnum.getCode(), exceptionCodeEnum.getDesc(), data);
     }
 }
