@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * springboot task
  */
 @Component
-@EnableScheduling
+//@EnableScheduling
 @Slf4j
 public class BootTaskTest {
 
