@@ -7,34 +7,46 @@
         #content{
             border: 1px solid green;
         }
-        ul > li{
+        ul > li, span{
             width: 50px;
             height: 50px;
+            line-height: 50px;
             list-style: none;
             border: 1px solid black;
+            margin-right: 5px;
+            text-align: center;
         }
-        li:nth-child(odd){
-            background-color: #e66465;
+        span{
+            /*变成块才有宽度*/
+            display: inline-block;
         }
-        li:nth-child(even){
-            background-color: mediumturquoise;
+        /*
+           li都浮动，会导致ul塌陷，添加span可以撑起来
+        */
+        li:nth-of-type(1){
+            float: left;
+        }
+        li:nth-of-type(2){
+            float: left;
+        }
+        li:nth-of-type(3){
+            /*float: left;*/
+            clear: both;
         }
     </style>
 </head>
 <body>
     <div id="content">
         <ul class="ulb" id="ulb">
+            <span>标题</span>
             <li>1</li>
             <li>2</li>
             <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
+            <p>
+                该算法撒旦飞洒发生老夫哈利和卡拉和港口是分厘卡顺丰快递撒浪嘿疯狂拉升疯狂拉升的撒法和拉横幅卡拉沙发哈，
+                发放大连分行的萨克联合大厦楼高和第三个撒法和拉首府卡利和疯狂拉升的疯狂拉升就
+            </p>
         </ul>
     </div>
 </body>
-<script th:src="@{/js/index.js}" type="text/javascript"></script>
 </html>
