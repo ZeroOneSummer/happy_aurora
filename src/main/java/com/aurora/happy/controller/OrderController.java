@@ -16,7 +16,7 @@ import java.util.Map;
 @ApiLog
 @Slf4j
 @RestController
-@RequestMapping("/user/")
+@RequestMapping("/order/")
 public class OrderController {
 
     @Autowired

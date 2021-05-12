@@ -47,7 +47,7 @@ public class OrderTest extends WebAppTest {
 
     @Test
     public void testPostWeb() throws Exception {
-        String requestBody = JSON.toJSONString(new User("海伦", 20));
+        String requestBody = JSON.toJSONString(new User(1001L,"海伦", 20));
         String result = mockMvc.perform(MockMvcRequestBuilders.post("/user/getOrders2")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(requestBody)

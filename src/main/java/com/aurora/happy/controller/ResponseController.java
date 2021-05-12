@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 关于CosmoController的自动封装响应
  */
 @CosmoController
-@RequestMapping("/res/")
+@RequestMapping("/resp/")
 public class ResponseController {
 
     @GetMapping("getUser")
     public User getUser(){
-        return new User("linda", 20);
+        return new User(1001L,"linda", 20);
     }
 
     @GetMapping("getUser2")
     @IgnoreCosmoResult
     public User getUser2(){
-        return new User("linda", 20);
+        return new User(1001L,"linda", 20);
     }
 }

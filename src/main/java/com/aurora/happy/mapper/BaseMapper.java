@@ -76,8 +76,6 @@ public class BaseMapper<T> {
         Object[] params = paramList.toArray(new Object[size]);  //参数数组
 
         // 执行sql
-        int num = jdbcTemplate.update(sql.toString(), params);
-        System.out.println(num);
-        return num;
+        return jdbcTemplate.update(sql.toString(), params);
     }
 }

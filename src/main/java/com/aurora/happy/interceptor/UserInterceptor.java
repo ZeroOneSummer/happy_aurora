@@ -17,7 +17,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
         System.out.println("-> UserInterceptor-UserInterceptor");
         //全局ThreadLocal存储信息
         System.out.println("ThreadLocal存储用户信息");
-        ThreadLocalUtil.put("system", new User("管理员", 30));
+        ThreadLocalUtil.put("system", new User(1001L, "管理员", 30));
         ThreadLocalUtil.put("another", "another");
         return super.preHandle(request, response, handler);
     }

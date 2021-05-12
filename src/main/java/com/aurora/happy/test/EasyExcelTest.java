@@ -33,8 +33,8 @@ public class EasyExcelTest {
      */
     static void writeExcel() throws Exception{
         List<User> list = new ArrayList<User>(){{
-            add(new User("李宁", 18));
-            add(new User("小花", 20));
+            add(new User(null,"李宁", 18));
+            add(new User(null,"小花", 20));
         }};
 
         Sheet sheet = new Sheet(1, 0, User.class);

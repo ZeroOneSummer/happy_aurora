@@ -43,7 +43,7 @@ public class JsonPathTest {
      * 对象解析
      */
     private static void test_2(){
-        User user = new User("linda", 20);
+        User user = new User(1001L,"linda", 20);
         //便于复用
         DocumentContext dc = JsonPath.parse(JSON.toJSON(user));
         System.out.println(dc.read("$.name").toString());

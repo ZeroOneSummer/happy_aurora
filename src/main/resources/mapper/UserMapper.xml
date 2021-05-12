@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aurora.happy.mapper.UserMapper">
+
+    <insert id="addUser">
+        insert into t_jpa_user(`name`, age) values(#{name, jdbcType=VARCHAR}, #{age, jdbcType=INTEGER})
+    </insert>
+</mapper>

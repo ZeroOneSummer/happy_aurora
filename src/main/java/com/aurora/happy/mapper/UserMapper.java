@@ -1,14 +1,15 @@
 package com.aurora.happy.mapper;
 
 import com.aurora.happy.pojo.User;
+import org.apache.ibatis.annotations.Update;
 
 /**
- * Created by pijiang on 2021/3/17.
+ * Created by pijiang on 2021/5/12.
  */
-public class UserMapper extends BaseMapper<User>{
+public interface UserMapper {
 
-    @Override
-    public int add(User bean) {
-        return super.add(bean);
-    }
+    int addUser(User user);
+
+    @Update("update t_jpa_user set age = #{age, jdbcType=INTEGER}, `name` = #{name, jdbcType=VARCHAR} where id = #{id, jdbcType=BIGINT}")
+    int updateUser(User user);
 }

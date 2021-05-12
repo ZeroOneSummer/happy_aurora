@@ -14,6 +14,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class User extends BaseRowModel {
 
+    private Long id;
+
     @ExcelProperty(value = "姓名", index = 0)
     private String name;
 

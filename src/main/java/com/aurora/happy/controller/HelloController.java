@@ -5,6 +5,7 @@ import com.aurora.happy.pojo.UserPojo;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api(tags = "用户接口")
 @Slf4j
+@RequestMapping("/hello/")
 @RestController
 public class HelloController {
 
@@ -27,7 +29,7 @@ public class HelloController {
             @ApiImplicitParam(name = "name", value = "名字", dataType = "String", paramType = "query")
     })
     @ApiOperation(value = "获取用户信息")
-    @GetMapping("/getUser")
+    @GetMapping("getUser")
     public Result getUser(@RequestParam Long id,
                           @RequestParam String name) {
 
@@ -38,7 +40,7 @@ public class HelloController {
 
 
     @ApiOperation(value = "添加用户信息", hidden = true)
-    @GetMapping("/addUser")
+    @GetMapping("addUser")
     public Result addUser() {
 
         log.info("用户已添加");
