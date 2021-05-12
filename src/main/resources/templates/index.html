@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+</head>
+<body>
+    <div id="content">
+        <h3>This is my first page, welcome to here!</h3>
+        <div id="form_table">
+            <p>登陆用户：<span th:text="${user.name}"></span></p>
+            <img th:src="@{/images/little_prince.jpg}"/>
+        </div>
+    </div>
+</body>
+<script th:src="@{/commons/jquery-3.6.0.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/index.js}" type="text/javascript"></script>
+</html>

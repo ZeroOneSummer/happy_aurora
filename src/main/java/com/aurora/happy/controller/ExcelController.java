@@ -33,7 +33,7 @@ public class ExcelController {
 
         // 导出数据
         PoiExcelUtils<Student> poiExcelUtils = new PoiExcelUtils<>(Student.class);
-        String path = Objects.requireNonNull(this.getClass().getClassLoader().getResource("templeate/student.xlsx")).getPath();
+        String path = Objects.requireNonNull(this.getClass().getClassLoader().getResource("excel/student.xlsx")).getPath();
         FileInputStream excelTemplateInputStream = new FileInputStream(new File(path));
         poiExcelUtils.exportExcelWithTemplate(studentList, "学生信息表.xlsx", excelTemplateInputStream, 2, 0, response);
         log.info("导出成功！");

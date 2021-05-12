@@ -1,7 +1,9 @@
 package com.aurora.happy.controller;
 
+import com.aurora.happy.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -12,7 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("index")
-    public String index() {
-        return "html/index";
+    public String index(Model model) {
+        model.addAttribute("user", new User(1001L, "一条鱼", 0));
+        return "index";
+    }
+
+    @GetMapping("demo")
+    public String demo() {
+        return "demo";
     }
 }

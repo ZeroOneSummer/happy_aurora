@@ -1,0 +1,51 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#content{
+    text-align: center;
+    width: 800px;
+    margin-top: 50px;
+    border: 1px solid red;
+    border-radius: 20px;
+    display: inline-block;
+    background-image: linear-gradient(#e66465, #9198e5);
+}
+
+h3{
+    padding: 20px;
+    font-size: 30px;
+}
+
+#form_table{
+   position: relative;
+}
+
+#form_table > p{
+    margin-bottom: 10px;
+    /*右对齐*/
+    float: right;
+    /*相对父级*/
+    position: relative;
+    right: 50px;
+    cursor: pointer;
+}
+
+#form_table > img {
+    width: 700px;
+    height: 450px;
+    margin-bottom: 50px;
+}
+
+
+
+
+
