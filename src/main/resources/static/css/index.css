@@ -35,7 +35,20 @@ h3{
     float: right;
     /*相对父级*/
     position: relative;
-    right: 50px;
+    right: 160px;
+    cursor: pointer;
+}
+
+#form_table > input{
+    width: 50px;
+    height: 25px;
+    background-color: darkgray;
+    margin-bottom: 8px;
+    /*右对齐*/
+    float: right;
+    /*相对父级*/
+    position: relative;
+    right: -35px;
     cursor: pointer;
 }
 

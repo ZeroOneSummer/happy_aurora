@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public int updateUser(User user) {
         return userMapper.updateUser(user);
     }
+
+    @Override
+    public User selectOne(User user) {
+        return userMapper.selectOne(user);
+    }
 }

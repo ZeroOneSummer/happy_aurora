@@ -20,7 +20,9 @@ public enum ExceptionCodeEnum {
     /**
      * 用户登录
      */
-    NEED_LOGIN(900, "用户未登录"),
+    NEED_REGISTER(900, "用户未注册"),
+    NEED_LOGIN(901, "用户未登录"),
+    LOGIN_OUT(902, "退出登陆"),
 
     /**
      * 参数校验

@@ -1,6 +1,7 @@
 package com.aurora.happy.aspect;
 
 import com.aurora.happy.annotation.UserLog;
+import com.aurora.happy.contanst.Contants;
 import com.aurora.happy.mapper.UserLogMapper;
 import com.aurora.happy.pojo.User;
 import com.aurora.happy.pojo.UserLogDO;
@@ -65,7 +66,7 @@ public class UserLogAspect {
         userLogDO.setModuleCode(userLogAnnotation.module().getModuleCode());
         userLogDO.setContent(getContentJson(point));
         userLogDO.setTitle(userLogAnnotation.title());
-        userLogDO.setOperatorId(Integer.toUnsignedLong(user.getAge()));
+        userLogDO.setOperatorId(user == null ? 0L : Integer.toUnsignedLong(user.getAge()));
         userLogDO.setOperateTime(new Date());
         userLogDO.setType(userLogAnnotation.type().getValue());
         int num = userLogMapper.add(userLogDO);
@@ -74,7 +75,7 @@ public class UserLogAspect {
 
     //获取登陆用户信息
     private User getUserInfo() {
-        return (User) ThreadLocalUtil.get("system");
+        return (User) ThreadLocalUtil.get(Contants.USER_INFO);
     }
 
     private String getContentJson(JoinPoint point) {

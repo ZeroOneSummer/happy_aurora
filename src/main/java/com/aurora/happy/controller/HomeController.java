@@ -1,6 +1,8 @@
 package com.aurora.happy.controller;
 
-import com.aurora.happy.pojo.User;
+import com.aurora.happy.annotation.LoginRequired;
+import com.aurora.happy.contanst.Contants;
+import com.aurora.happy.utils.ThreadLocalUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
+    /**
+     *需要登陆才能访问
+     */
+    @LoginRequired
     @GetMapping("index")
     public String index(Model model) {
-        model.addAttribute("user", new User(1001L, "一条鱼", 0));
+        model.addAttribute("user", ThreadLocalUtil.get(Contants.USER_INFO));
         return "index";
     }
 

@@ -1,6 +1,7 @@
 package com.aurora.happy.mapper;
 
 import com.aurora.happy.pojo.User;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 /**
@@ -12,4 +13,7 @@ public interface UserMapper {
 
     @Update("update t_jpa_user set age = #{age, jdbcType=INTEGER}, `name` = #{name, jdbcType=VARCHAR} where id = #{id, jdbcType=BIGINT}")
     int updateUser(User user);
+
+    @Select("select * from t_jpa_user where id = #{id, jdbcType=BIGINT}")
+    User selectOne(User user);
 }
