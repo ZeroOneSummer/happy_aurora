@@ -20,6 +20,16 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
+  mail:
+    host: smtp.qq.com
+    username: QQ号码@qq.com
+    password: zjyeotrjsjglbahh
+    default-encoding: UTF-8
+    properties:
+      mail:
+        mime:
+          splitlongparameters=false:
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.aurora.happy.pojo

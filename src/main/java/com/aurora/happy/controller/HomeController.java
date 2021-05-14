@@ -22,6 +22,7 @@ public class HomeController {
     @GetMapping("index")
     public String index(Model model) {
         model.addAttribute("user", ThreadLocalUtil.get(Contants.USER_INFO));
+//        model.addAttribute("user", new User(3L, "Aurora", 20));
         return "index";
     }
 

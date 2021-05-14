@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邮件</title>
+    <style type="text/css">
+        .resume-wrap {
+            width: 621px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 4px;
+            box-shadow: 0px 0px 18px 0px rgba(21, 21, 22, 0.17);
+        }
+        .logo-title {
+            height: 25px;
+            margin-right: 14px;
+        }
+        .header-title {
+            padding-left: 14px;
+            border-left: 1px solid #fff;
+        }
+        .resume-header {
+            display: flex;
+            align-items: center;
+            padding: 0 22px;
+            font-size: 20px;
+            color: #fff;
+            height: 75px;
+            border-radius: 4px 4px 0px 0px;
+            background: linear-gradient(251deg, #5FAEF9 0%, #3985FD 100%);
+        }
+        .resume-body {
+            padding: 50px;
+            color: #131415;
+        }
+        .resume_position {
+            color:#5FAEF9;
+        }
+        .body_content {
+            line-height: 25px;
+        }
+        .position-card {
+            display: flex;
+            margin-top: 36px;
+            border-radius: 4px;
+            border: 1px solid #DBE0E6;
+            padding: 30px;
+        }
+        .avatar {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid #DBE0E6;
+        }
+        .avatar .avatar-sex-icon {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            bottom: 0;
+            right: 0;
+        }
+        .card-info {
+            margin-left: 15px;
+        }
+        .info-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #3C3E43;
+            line-height: 25px;
+        }
+        .info-pos {
+            margin-top: 10px;
+            margin-bottom: 16px;
+            color: #3C3E43;
+            font-size: 14px;
+        }
+        .info-pos span {
+            padding: 0 10px;
+            border-right: 1px solid #DBE0E6;
+        }
+        .info-pos span:first-child {
+            padding-left: 0;
+        }
+        .info-pos span:nth-child(n+4) {
+            padding-right: 0;
+            border-right: none;
+        }
+        .info-pos span:nth-child(n+5) {
+            padding: 0;
+        }
+        .info-bottom {
+            font-size: 14px;
+            font-weight: 400;
+            color: #7F8289;
+            line-height: 20px;
+            margin-bottom: 10px;
+        }
+        .info-bottom img{
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+        .resume-bottom {
+            margin: 46px auto 0;
+            color: #fff;
+            padding:0 20px;
+            /*width: 230px;*/
+            height: 44px;
+            line-height: 44px;
+            /*background: #F9791B;*/
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            background:  #5FAEF9;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            color: #F9791B;
+        }
+        .resume-awrap {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="resume-wrap">
+    <div class="resume-header">
+        <!--      <img class="logo-title" src="https://wise-job.oss-cn-zhangjiakou.aliyuncs.com/wiseJob/1601028532357_430*289.jpg">-->
+        <span style="margin-right: 10px;">BOSS直聘</span>
+        <div class="header-title">你好</div>
+    </div>
+    <div class="resume-body">
+        <p>Hi, <span th:text="${publisher}"></span></p>
+        <div class="body_content">你在BOSS直聘上发布的<span class="resume_position" th:text="${jobName}">【会计助理-深圳】</span>职位，有候选人感兴趣，并通过邮箱给你发了一封简历，请点击邮箱附件查看其附件简历。</div>
+        <div class="position-card">
+            <div class="avatar">
+                <img th:if="${sex eq 1}" src="https://wise-job.oss-cn-zhangjiakou.aliyuncs.com/wiseJob/1600923429345_60*60.png" alt="" class="avatar-sex-icon">
+                <img th:if="${sex eq 0}" src="https://wise-job.oss-cn-zhangjiakou.aliyuncs.com/wiseJob/1600923451797_60*60.png" alt="" class="avatar-sex-icon">
+                <img th:src="${icon}" alt="">
+            </div>
+            <div class="card-info">
+                <div class="info-name"><span th:text="${candidate}"></span></div>
+                <div class="info-pos">
+                    <span th:text="${school}"></span>
+                    <span th:text="${major}"></span>
+                    <span th:text="${education}"></span>
+                    <span th:text="${salaryBegin}"></span>K-<span th:text="${salaryEnd}"></span>K / 月</span>
+                </div>
+                <div class="info-duty info-bottom">
+                    <img src="https://wise-job.oss-cn-zhangjiakou.aliyuncs.com/wiseJob/1600923405293_23*23.png" alt="职位图标">
+                    <span th:text="${expectJob}">高级会计助理</span>
+                </div>
+                <div class="info-address info-bottom">
+                    <img src="https://wise-job.oss-cn-zhangjiakou.aliyuncs.com/wiseJob/1600923377292_23*23.png" alt="地理位置">
+                    <span th:text="${expectCity}">深圳</span>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <a class="resume-bottom" th:href="${appendixUrl}" target="_blank">查看简历附件: <span th:text="${appendixName}"></span></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
