@@ -1,5 +1,6 @@
 package com.aurora.happy.task;
 
+import java.text.DecimalFormat;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
@@ -9,10 +10,12 @@ import java.util.stream.LongStream;
  * Created by pijiang on 2022/4/2.
  */
 public class DemoTest {
-    private static final long start = 0, end = 10_0000_0000L;
+    private static final long start = 0, end = 1000000000L; //end = 10_0000_0000L;
+//    private static DecimalFormat numFormat = new DecimalFormat("##,###,###,###,###0.00");
+    private static DecimalFormat numFormat = new DecimalFormat("##,###,###,###,###0");
 
     public static void main(String[] args) throws Exception{
-        System.out.println(String.format("从%d加到%d耗时：", start, end));
+        System.out.println(String.format("从%d加到%s耗时：", start, numFormat.format(end)));
         doTask_1();
         doTask_2();
     }
