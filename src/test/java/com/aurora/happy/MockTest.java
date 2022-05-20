@@ -39,7 +39,7 @@ public class MockTest extends WebAppTest {
 
         //3.行为验证
         verify(mockList).add("1");      //有调用，通过
-//        verify(mockList).add("2");      //没调用过，异常
+        //verify(mockList).add("2");      //没调用过，异常
         verify(mockList).clear();       //有调用，通过
         verify(mockList, times(1)).add("1");     //验证调用次数，1-OK，2-异常
         verify(mockList, never()).add("zos");   //验证一次也没调用，atLeast(2)/atMost(5) 最少2次/最多5次
