@@ -45,7 +45,17 @@
     </style>
 </head>
 <body>
-    <div id="content">
+    <form>
+        <h3 th:text="#{login.tip}" >Please Sign in</h3>
+        <input type="text"  th:placeholder="#{login.username}" > <br>
+        <input type="password" th:placeholder="#{login.password}"> <br>
+        <input type="checkbox" value="rember-me">[[#{login.remeber}]] <br>
+        <button type="submit" th:text="#{login.btn}" >Sign in</button>  <br>
+        <a th:href="@{/demo.html(lang='zh_CN')}" >中文</a> &nbsp;&nbsp;&nbsp;
+        <a th:href="@{/demo.html(lang='en_US')}">English</a> &nbsp;&nbsp;&nbsp;
+        <a href="javascript:void(0)" onclick="testI18N()" th:text="#{ty.test}">JS国际化测试</a>
+    </form>
+    <!--<div id="content">
         <ul class="ulb" id="ulb">
             <span>标题</span>
             <li class="iphone">1</li>
@@ -56,6 +66,34 @@
                 发放大连分行的萨克联合大厦楼高和第三个撒法和拉首府卡利和疯狂拉升的疯狂拉升就
             </p>
         </ul>
-    </div>
+    </div>-->
 </body>
+<script th:src="@{/commons/jquery-3.6.0.min.js}" type="text/javascript"></script>
+<script th:src="@{/commons/jquery.i18n.properties.js}" type="text/javascript"></script>
+<script th:inline="javascript">
+    var ROOT = [[${#servletContext.contextPath}]];
+    //获取默认语言
+    var LANG_COUNTRY = [[${#locale.language + '_' + #locale.country}]];
+
+    //初始化 i18n 插件
+    $.i18n.properties({
+        path: ROOT + '/i18n/',      //这里表示访问路径
+        name: 'zero',               //文件名前缀
+        language: LANG_COUNTRY,     //文件名语言 例如 en_US
+        mode: 'both'                //默认值
+    });
+
+    //初始化 i18n 函数
+    function i18n(msgKey) {
+        try {
+            return $.i18n.prop(msgKey);
+        } catch (e) {
+            return msgKey;
+        }
+    }
+
+    //获取国际化翻译值
+    console.log(i18n('ty.zll'));
+</script>
+<script th:src="@{/js/demo.js}" type="text/javascript"></script>
 </html>
