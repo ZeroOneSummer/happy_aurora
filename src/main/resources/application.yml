@@ -21,11 +21,18 @@ spring:
     mode: HTML5
     prefix: classpath:/templates/
     suffix: .html
+    enabled: false  #关闭模板thymeleaf引擎
 
   #i18n
   messages:
     basename: i18n.zero
     encoding: utf-8
+
+  #jsp
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
 
   mail:
     host: smtp.qq.com

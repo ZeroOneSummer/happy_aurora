@@ -30,4 +30,12 @@ public class HomeController {
     public String demo() {
         return "demo";
     }
+
+    /**
+     * jsp
+     */
+    @GetMapping("home.do")
+    public String toHome() {
+        return "home";
+    }
 }
