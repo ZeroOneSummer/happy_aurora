@@ -110,7 +110,9 @@
             if (settings.language.length >= 5) {
                 var longCode = settings.language.substring(0, 5);
                 longFileName = settings.path + file + '_' + longCode + '.properties';
-                fileNames = [defaultFileName, shortFileName, longFileName];
+                //fileNames = [defaultFileName, shortFileName, longFileName];
+                //去掉xx_zh.properties这种简写方式，避免访问404
+                fileNames = [longFileName];
             } else {
                 fileNames = [defaultFileName, shortFileName];
             }

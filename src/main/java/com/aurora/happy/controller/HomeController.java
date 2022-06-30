@@ -2,8 +2,10 @@ package com.aurora.happy.controller;
 
 import com.aurora.happy.annotation.LoginRequired;
 import com.aurora.happy.contanst.Contants;
+import com.aurora.happy.i18n.I18nMessageUtils;
 import com.aurora.happy.utils.ThreadLocalUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +37,11 @@ public class HomeController {
      * jsp
      */
     @GetMapping("home.do")
-    public String toHome() {
+    public String toHome(Model model) {
+        log.info("国际化 - zero：" + I18nMessageUtils.get("ty.zll"));
+        log.info("国际化 - aurora：" + I18nMessageUtils.get("aurora.title"));
+        log.info("当前语言：" + LocaleContextHolder.getLocale());
+        model.addAttribute("userNamer", "秋白");
         return "home";
     }
 }

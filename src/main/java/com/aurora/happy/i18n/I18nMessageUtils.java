@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
  * 国际化工具类
  */
 @Component
-public class MessageUtils {
+public class I18nMessageUtils {
 
     private static MessageSource messageSource;
 
     @Autowired
-    public MessageUtils(MessageSource messageSource) {
-        MessageUtils.messageSource = messageSource;
+    public I18nMessageUtils(MessageSource messageSource) {
+        I18nMessageUtils.messageSource = messageSource;
     }
 
     public static String get(String msgKey) {

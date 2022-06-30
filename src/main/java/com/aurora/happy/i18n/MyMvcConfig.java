@@ -14,6 +14,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         //将指定url访问，跳转到指定view
         registry.addViewController("/").setViewName("demo");
         registry.addViewController("/demo.html").setViewName("demo");
+        registry.addViewController("/demo.do").setViewName("demo");
     }
 
     /**

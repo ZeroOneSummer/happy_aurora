@@ -25,7 +25,7 @@ spring:
 
   #i18n
   messages:
-    basename: i18n.zero
+    basename: i18n.zero, i18n.aurora #多个用逗号隔开
     encoding: utf-8
 
   #jsp
