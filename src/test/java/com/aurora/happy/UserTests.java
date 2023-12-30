@@ -3,6 +3,7 @@ package com.aurora.happy;
 import com.aurora.happy.base.WebAppTest;
 import com.aurora.happy.mapper.UserMapper;
 import com.aurora.happy.pojo.User;
+import com.aurora.happy.service.UserService;
 import lombok.SneakyThrows;
 import lombok.var;
 import org.junit.Test;
@@ -21,6 +22,9 @@ public class UserTests extends WebAppTest {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    UserService userService;
 
     /**
      * 1.AbstractTransactionalJUnit4SpringContextTests 含有 @Transactional，不要随意继承
@@ -42,5 +46,15 @@ public class UserTests extends WebAppTest {
                 .build();
         var rs = userMapper.addUser(user);
         assertEquals("添加用户失败！", rs, 1);
+    }
+
+    @Test
+    public void queryUser(){
+        var user = User.builder()
+                .id(1001L)
+                .age(18)
+                .name("lisa")
+                .build();
+        userService.selectOne(user);
     }
 }

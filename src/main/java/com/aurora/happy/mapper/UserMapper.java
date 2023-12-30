@@ -11,9 +11,9 @@ public interface UserMapper {
 
     int addUser(User user);
 
-    @Update("update t_jpa_user set age = #{age, jdbcType=INTEGER}, `name` = #{name, jdbcType=VARCHAR} where id = #{id, jdbcType=BIGINT}")
+    @Update("update t_user set age = #{age, jdbcType=INTEGER}, `name` = #{name, jdbcType=VARCHAR} where id = #{id, jdbcType=BIGINT}")
     int updateUser(User user);
 
-    @Select("select * from t_jpa_user where id = #{id, jdbcType=BIGINT}")
+    @Select("select * from t_user where id = #{id, jdbcType=BIGINT}")
     User selectOne(User user);
 }

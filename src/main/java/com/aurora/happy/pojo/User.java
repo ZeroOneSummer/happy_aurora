@@ -13,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table("t_jpa_user")
+@Table("t_user")
 public class User extends BaseRowModel {
 
     private Long id;
