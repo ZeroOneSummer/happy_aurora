@@ -6,6 +6,7 @@ import com.aurora.happy.i18n.I18nMessageUtils;
 import com.aurora.happy.utils.ThreadLocalUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class HomeController {
         return "index";
     }
 
+    @PreAuthorize("hasRole('user')")
     @GetMapping("demo")
     public String demo() {
         return "demo";
