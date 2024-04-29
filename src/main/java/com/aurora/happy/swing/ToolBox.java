@@ -42,15 +42,11 @@ public class ToolBox {
             JTextArea leftTextArea = new JTextArea();
             leftTextArea.setLineWrap(true); // 自动换行
             JScrollPane leftScrollPane = new JScrollPane(leftTextArea);
-            leftScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); //垂直滚动（需要时）
-            leftScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //水平滚动（不需要）
             //右边
             JTextArea rightTextArea = new JTextArea();
             leftTextArea.setLineWrap(true); // 自动换行
             rightTextArea.setEditable(false); // 设置为只读
             JScrollPane rightScrollPane = new JScrollPane(rightTextArea);
-            rightScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-            rightScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
             middePanl.add(leftScrollPane);
             middePanl.add(rightScrollPane);
