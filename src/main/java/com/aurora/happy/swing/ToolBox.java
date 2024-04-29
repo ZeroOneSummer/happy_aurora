@@ -19,8 +19,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 迷你工具箱
@@ -265,7 +268,8 @@ public class ToolBox {
             Robot robot = new Robot();
             Rectangle rectangle = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
             BufferedImage image = robot.createScreenCapture(rectangle);
-            File file = new File("aa.png");
+            String number = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
+            File file = new File(number + ".png");
             ImageIO.write(image, "png", file);
             JOptionPane.showMessageDialog(null, "已保存至：" + file.getAbsolutePath(), "截图完成", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
