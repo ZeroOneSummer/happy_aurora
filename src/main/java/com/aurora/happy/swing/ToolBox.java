@@ -23,13 +23,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Objects;
 
 /**
  * 迷你工具箱
  */
 public class ToolBox {
     private static final String TO_XML_ESCAPE = "toXmlEscape";
+    private static final String TO_JSON_ESCAPE = "toJsonEscape";
     private static final String TO_XML_PRETTY = "toXmlPretty";
     private static final String TO_JSON_PRETTY = "toJsonPretty";
 
@@ -57,15 +58,18 @@ public class ToolBox {
         JTextArea left1 = new JTextArea(), right1 = new JTextArea();
         JTextArea left2 = new JTextArea(), right2 = new JTextArea();
         JTextArea left3 = new JTextArea(), right3 = new JTextArea();
+        JTextArea left4 = new JTextArea(), right4 = new JTextArea();
         areaList.add(new Pair<>(left1, right1));
         areaList.add(new Pair<>(left2, right2));
         areaList.add(new Pair<>(left3, right3));
+        areaList.add(new Pair<>(left4, right4));
 
         //middle画板 - tab
         JTabbedPane tabPanel = new JTabbedPane();
         tabPanel.addTab("xml转义", getTabPanel(TO_XML_ESCAPE, left1, right1));
         tabPanel.addTab("xml格式化", getTabPanel(TO_XML_PRETTY, left2, right2));
-        tabPanel.addTab("json格式化", getTabPanel(TO_JSON_PRETTY, left3, right3));
+        tabPanel.addTab("json转义", getTabPanel(TO_JSON_ESCAPE, left3, right3));
+        tabPanel.addTab("json格式化", getTabPanel(TO_JSON_PRETTY, left4, right4));
         mainPanel.add(tabPanel, BorderLayout.CENTER);
 
         //top画板 - 按钮
@@ -119,13 +123,17 @@ public class ToolBox {
                     switch (tabName){
                         case TO_XML_ESCAPE:
                             oldText = toXmlPretty(oldText, isPretty); //是否一行
-                            newText = toXmlEscape(oldText, isPretty);  //转移引号
+                            newText = toXmlEscape(oldText);
                             break;
                         case TO_XML_PRETTY:
                             newText = toXmlPretty(oldText, isPretty);
                             break;
+                        case TO_JSON_ESCAPE:
+                            oldText = toJsonPretty(oldText, isPretty);
+                            newText = toJsonEscape(oldText);
+                            break;
                         case TO_JSON_PRETTY:
-                            newText = toJsonPretty(oldText, isPretty);
+                                newText = toJsonPretty(oldText, isPretty);
                             break;
                         default:
                             throw new RuntimeException("未知操作类型！");
@@ -210,10 +218,9 @@ public class ToolBox {
     /**
      * xml转义
      * @param text
-     * @param isPretty
      * @return
      */
-    private static String toXmlEscape(String text, boolean isPretty){
+    private static String toXmlEscape(String text){
         return text.replace("\"", "\\\"");
     }
 
@@ -249,14 +256,27 @@ public class ToolBox {
     }
 
     /**
+     * json转义
+     * @param text
+     * @return
+     */
+    private static String toJsonEscape(String text){
+        return text.replace("\"", "\\\"");
+    }
+
+    /**
      * json格式化
      * @param text
      * @param isPretty
      * @return
      */
     private static String toJsonPretty(String text, boolean isPretty){
-        JSONObject jsonObject = JSON.parseObject(text);
-        return JSON.toJSONString(jsonObject, isPretty);
+        if (Objects.nonNull(text) && text.trim().length() > 0){
+            text = text.replace("\\\"", "\""); //转义还原
+            JSONObject jsonObject = JSON.parseObject(text);
+            return JSON.toJSONString(jsonObject, isPretty);
+        }
+        return "";
     }
 
     /**
